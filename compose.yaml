@@ -1,0 +1,16 @@
+services:
+  amedas:
+    build: .
+    init: true
+    ports:
+      - 8000:8000
+    working_dir: /amedas
+    volumes:
+      - .:/amedas
+      - .dockervenv:/amedas/.venv
+    devices:
+      - /dev/i2c-1:/dev/i2c-1
+    command: src.amedas.main:app
+    environment:
+      WATCHFILES_FORCE_POLLING: true
+      TZ: Asia/Tokyo

@@ -1,0 +1,29 @@
+[tool.poetry]
+authors = ["Tomonori Sato <tomosato.g@gmail.com>"]
+description = "Indoor environmental monitoring using RPZ-IR-Sensor for Raspberry Pi 3 A+"
+keywords = ["bme280", "tsl2572", "Raspberry Pi 3A+"]
+license = "MIT"
+name = "amedas"
+readme = "README.md"
+repository = "https://github.com/tomosatoP/raspberrypi-amedas"
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+cgsensor = "^1.0"
+fastapi = {extras = ["all"], version = "^0.109.2"}
+python = "^3.11"
+uvicorn = {extras = ["standard"], version = "^0.27.1"}
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.2.2"
+
+[tool.poetry.group.docs.dependencies]
+sphinx = "^7.2.6"
+sphinx-rtd-theme = "^2.0.0"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.0.1"
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]
