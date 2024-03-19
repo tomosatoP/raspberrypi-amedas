@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.abspath("../src/amedas"))
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "Amedas - Raspberry Pi"
+project = "amedas - Raspberry Pi"
 copyright = "2024, tomosatoP"
 author = "tomosatoP"
 release = "0.1.0"
@@ -44,6 +44,7 @@ autodoc_default_options = {
 
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
+
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output

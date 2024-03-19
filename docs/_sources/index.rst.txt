@@ -1,9 +1,9 @@
-.. Amedas - Raspberry Pi documentation master file, created by
-   sphinx-quickstart on Sun Mar 17 11:32:26 2024.
+.. amedas - Raspberry Pi documentation master file, created by
+   sphinx-quickstart on Tue Mar 19 10:47:39 2024.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Amedas - Raspberry Pi's documentation!
+Welcome to amedas - Raspberry Pi's documentation!
 =================================================
 
 .. toctree::

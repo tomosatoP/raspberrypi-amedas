@@ -1,12 +1,11 @@
-# Create src/amedas/libs API documentation using Sphinx.
+# Create API documentation using docstring & Sphinx.
 
-The following packages must be installed:
-- sphinx
-- sphinx-rtd-theme
+Target libraries:
+- src/amedas/libs
 
 ## Install Sphinx packages
 ~~~sh
-# create "poetry.lock"
+# Install group docs ["sphinx", "sphinx-rtd-theme"]
 docker compose run --entrypoint "poetry update --lock --with docs" amedas
 docker compose run --entrypoint "poetry install --with docs" amedas
 ~~~
@@ -14,7 +13,7 @@ docker compose run --entrypoint "poetry install --with docs" amedas
 ## Make directries and configuration files.
 
 ~~~sh
-docker compose run --entrypoint "poetry run sphinx-quickstart docs" amedas
+docker compose run --entrypoint "poetry run sphinx-quickstart docs_src" amedas
 # Selected root path: docs
 # > Separate source and build directories (y/n) [n]: n
 # > Project name: Amedas - Raspberry Pi
@@ -23,11 +22,24 @@ docker compose run --entrypoint "poetry run sphinx-quickstart docs" amedas
 # > Project language [en]: en
 ~~~
 
-## Modify the configuration file.
+## Modify the configuration files.
 
-~~~sh
-nano docs/conf.py
+docs_src/Makefile
+
+~~~diff
+@@ -6,7 +6,7 @@
+ SPHINXOPTS    ?=
+ SPHINXBUILD   ?= sphinx-build
+ SOURCEDIR     = .
+-BUILDDIR      = _build
++BUILDDIR      = ../docs
+ 
+ # Put it first so that "make" without argument is like "make help".
+ help:
 ~~~
+
+docs_src/conf.py
+
 ~~~diff
 @@ -3,6 +3,14 @@
  # For the full list of built-in configuration values, see the documentation:
@@ -84,11 +96,12 @@ nano docs/conf.py
 ### Add docstring of modules `src/amedas/libs/` to the documents source.
 
 ~~~sh
-docker compose run --entrypoint "poetry run sphinx-apidoc -f -o docs src/amedas/libs" amedas
+docker compose run --entrypoint "poetry run sphinx-apidoc -f -o docs_src src/amedas/libs" amedas
 # These files are created: modules.rst, libs.rst
-
-nano docs/index.rsx
 ~~~
+
+docs_src/index.rsx
+
 ~~~diff
 @@ -10,7 +10,7 @@
     :maxdepth: 2
@@ -102,9 +115,16 @@ nano docs/index.rsx
 ~~~
 
 
-## Create documents under the folder `docs/_build/html`.
+## Create documents under the folder `docs`.
 
 ~~~sh
-docker compose run --entrypoint "poetry run make -C docs html" amedas
+docker compose run --entrypoint "poetry run sphinx-build -b html docs_src docs" amedas
 ~~~
+
 ---
+
+If you want to remove the contents of `docs`:
+
+~~~sh
+docker compose run --entrypoint "poetry run make -C docs_src clean" amedas
+~~~
