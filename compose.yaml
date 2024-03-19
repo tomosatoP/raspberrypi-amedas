@@ -14,3 +14,4 @@ services:
     environment:
       WATCHFILES_FORCE_POLLING: true
       TZ: Asia/Tokyo
+    restart: always
