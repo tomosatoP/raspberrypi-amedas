@@ -17,7 +17,7 @@ Referenced Books: "動かして学ぶ！Python FastAPI 開発入門" ISBN978-4-7
 ## Download & Install
 
 ~~~sh
-git clone https://github.com/tomosatoP/raspberrypi-amedas.git
+git clone --depth 1 https://github.com/tomosatoP/raspberrypi-amedas.git
 
 cd raspberrypi-amedas
 mkdir .dockervenv

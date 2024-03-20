@@ -52,12 +52,15 @@ sudo raspi-config nonint do_i2c 0
 
 ### Stops Bluetooth
 
-~~~sh
-sudo nano /boot/firmware/config.txt
-~~~
+/boot/firmware/config.txt
+
 ~~~diff
-[all]
-+ dtoverlay=disable-bt
+@@ -46,4 +46,4 @@
+ otg_mode=1
+
+ [all]
+-
++dtoverlay=disable-bt
 ~~~
 
 ### Allow cgroup V2 CPU & Memory control
@@ -65,27 +68,30 @@ sudo nano /boot/firmware/config.txt
 ~~~sh
 stat -fc %T /sys/fs/cgroup/
 # > cgroup2fs
-
-sudo nano /boot/firmware/cmdline.txt
 ~~~
-Add to the end of the line without a line break
+
+/boot/firmware/cmdline.txt
 ~~~diff
-cgroup_enable=cpuset
-cgroup_enable=memory
-cgroup_memory=1
-swapaccount=1
+@@ -1 +1 @@
+-console=serial0,115200 console=tty1 root=PARTUUID=f4b17f9c-02 rootfstype=ext4 fsck.repair=yes rootwait cfg80211.ieee80211_regdom=JP
+\ No newline at end of file
++console=serial0,115200 console=tty1 root=PARTUUID=f4b17f9c-02 rootfstype=ext4 fsck.repair=yes rootwait cfg80211.ieee80211_regdom=JP cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1 swapaccount=1
 ~~~
 
 ### Extend swap file
 
-~~~sh
-sudo nano /etc/dphys-swapfile
-~~~
+/etc/dphys-swapfile
 ~~~diff
-- CONF_SWAPSIZE=100
-+ CONF_SWAPSIZE=2048
-~~~
+@@ -13,7 +13,7 @@
 
+ # set size to absolute value, leaving empty (default) then uses computed value
+ #   you most likely don't want this, unless you have an special disk situation
+-CONF_SWAPSIZE=100
++CONF_SWAPSIZE=2048
+
+ # set size to computed value, this times RAM size, dynamically adapts,
+ #   guarantees that there is enough swap without wasting disk space on excess
+~~~ 
 ~~~sh
 sudo systemctl restart dphys-swapfile
 
@@ -128,12 +134,11 @@ i2cdetect -y 1
 
 ### Allow rootless mode dockers to handle I2C devices
 
-~~~sh
-sudo nano /etc/udev/rules.d/99-com.rules
-~~~
+/etc/udev/rules.d/99-com.rules
+
 ~~~diff
-- SUBSYSTEM=="i2c-dev", GROUP="i2c", MODE="0660"
-+ SUBSYSTEM=="i2c-dev", GROUP="i2c", MODE="0666"
+-SUBSYSTEM=="i2c-dev", GROUP="i2c", MODE="0660"
++SUBSYSTEM=="i2c-dev", GROUP="i2c", MODE="0666"
 ~~~
 ~~~sh
 sudo udevadm control --reload-rules
@@ -173,7 +178,22 @@ echo \
 sudo apt update
 ~~~
 
-### Set the route-less mode
+### Set & stop the root-mode
+
+Install packages
+
+~~~sh
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+~~~
+
+stop root-mode
+
+~~~sh
+sudo systemctl disable --now docker.service docker.socket
+~~~
+
+### Set the root-less mode
 
 Installing Related Packages
 ~~~sh
