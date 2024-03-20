@@ -13,7 +13,8 @@ Procedure
 1. [Install rootless mode docker](#install-rootless-mode-docker)
     1. [Uninstall old versions](#uninstall-old-versions)
     1. [Install using the apt repository](#install-using-the-apt-repository)
-    1. [Set the route-less mode](#set-the-route-less-mode)
+    1. [Set & stop the root mode](#set--stop-the-root-mode)
+    1. [Set the root-less mode](#set-the-root-less-mode)
 
 Raspberry Pi and peripherals
 
