@@ -29,7 +29,7 @@ OS customization - Raspberry Pi OS Lite (64bit) (bookworm)
 
 |Items|propriety|param 1|param 2|param 3|
 |---|---|---|---|---|
-|Uostname|- [X] |amedas|-|-|
+|Uostname|- [x] |amedas|-|-|
 |Username|- [X] |re|\<PASSWORD\>|-|
 |Wi-Fi|- [X] |\<SSID\>|\<PASSWORD\>|JP|
 |Locale|- [X] |Asia/Tokyo|jp|-|
