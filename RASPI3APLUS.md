@@ -37,7 +37,7 @@ OS customization - Raspberry Pi OS Lite (64bit) (bookworm)
 
 - IP address : 192.168.68.160/24
 
-- [x]
+- [x] a
 
 ## Setup
 
