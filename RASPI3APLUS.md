@@ -28,7 +28,7 @@ Raspberry Pi and peripherals
 OS customization - Raspberry Pi OS Lite (64bit) (bookworm)
 
 |Items|propriety|param 1|param 2|param 3|
-|---|---|---|---|---|
+|---|:-:|---|---|---|
 |Uostname|&#x2612;|amedas|-|-|
 |Username|&#x2612;|re|\<PASSWORD\>|-|
 |Wi-Fi|&#x2612;|\<SSID\>|\<PASSWORD\>|JP|
