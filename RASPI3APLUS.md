@@ -30,10 +30,10 @@ OS customization - Raspberry Pi OS Lite (64bit) (bookworm)
 |Items|propriety|param 1|param 2|param 3|
 |---|---|---|---|---|
 |Uostname|&#x2612;|amedas|-|-|
-|Username|[X]|re|\<PASSWORD\>|-|
-|Wi-Fi|[X]|\<SSID\>|\<PASSWORD\>|JP|
-|Locale|[X]|Asia/Tokyo|jp|-|
-|SSH|[X]|password auth|-|-|
+|Username|&#x2612;|re|\<PASSWORD\>|-|
+|Wi-Fi|&#x2612;|\<SSID\>|\<PASSWORD\>|JP|
+|Locale|&#x2612;|Asia/Tokyo|jp|-|
+|SSH|&#x2612;|password auth|-|-|
 
 - IP address : 192.168.68.160/24
 
