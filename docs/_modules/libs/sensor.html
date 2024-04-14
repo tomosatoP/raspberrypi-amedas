@@ -127,13 +127,16 @@
         <span class="n">result</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="k">for</span> <span class="n">i2c_address</span> <span class="ow">in</span> <span class="n">_SENSOR</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="k">match</span> <span class="n">i2c_address</span><span class="p">:</span>
-                <span class="k">case</span> <span class="mh">0x39</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">TSL2572</span><span class="p">()</span><span class="o">.</span><span class="n">check_id</span><span class="p">():</span>
-                        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i2c_address</span><span class="p">)</span>
-                <span class="k">case</span> <span class="mh">0x76</span> <span class="o">|</span> <span class="mh">0x77</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">BME280</span><span class="p">(</span><span class="n">i2c_address</span><span class="p">)</span><span class="o">.</span><span class="n">check_id</span><span class="p">():</span>
-                        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i2c_address</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">match</span> <span class="n">i2c_address</span><span class="p">:</span>
+                    <span class="k">case</span> <span class="mh">0x39</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">TSL2572</span><span class="p">()</span><span class="o">.</span><span class="n">check_id</span><span class="p">():</span>
+                            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i2c_address</span><span class="p">)</span>
+                    <span class="k">case</span> <span class="mh">0x76</span> <span class="o">|</span> <span class="mh">0x77</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">BME280</span><span class="p">(</span><span class="n">i2c_address</span><span class="p">)</span><span class="o">.</span><span class="n">check_id</span><span class="p">():</span>
+                            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i2c_address</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+                <span class="k">pass</span>
 
         <span class="k">return</span> <span class="n">result</span></div>
 </div>

@@ -4,7 +4,7 @@
 :GET /sensors/{i2c_address}:
 """
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException, status
 from typing import List
 from dataclasses import asdict
 
@@ -24,11 +24,18 @@ async def list_sensor():
                 asdict(sensor_lib.Sensor(i2c_address=address))
             )
         )
+
+    if result == []:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="not found")
+
     return result
 
 
 @router.get("/sensors/{i2c_address}", response_model=sensor_schema.Amedas)
 async def list_sensor_data(i2c_address: int):
+    if i2c_address not in sensor_lib.Sensor.list_i2c_address():
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="not found")
+
     return sensor_schema.Amedas.model_validate(
         asdict(sensor_lib.Amedas(sensor=sensor_lib.Sensor(i2c_address=i2c_address)))
     )

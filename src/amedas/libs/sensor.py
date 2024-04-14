@@ -47,13 +47,16 @@ class Sensor:
         result: List[int] = []
 
         for i2c_address in _SENSOR.keys():
-            match i2c_address:
-                case 0x39:
-                    if TSL2572().check_id():
-                        result.append(i2c_address)
-                case 0x76 | 0x77:
-                    if BME280(i2c_address).check_id():
-                        result.append(i2c_address)
+            try:
+                match i2c_address:
+                    case 0x39:
+                        if TSL2572().check_id():
+                            result.append(i2c_address)
+                    case 0x76 | 0x77:
+                        if BME280(i2c_address).check_id():
+                            result.append(i2c_address)
+            except OSError:
+                pass
 
         return result
 
