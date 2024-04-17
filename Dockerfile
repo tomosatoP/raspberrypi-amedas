@@ -1,5 +1,6 @@
 FROM tomosatop/poetry
 
+WORKDIR /amedas
 COPY pyproject.toml* poetry.lock* ./
 RUN if [ -f pyproject.toml ]; then poetry install --no-root --only main; fi
 
