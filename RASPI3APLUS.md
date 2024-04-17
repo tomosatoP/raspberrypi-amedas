@@ -56,12 +56,14 @@ sudo raspi-config nonint do_i2c 0
 /boot/firmware/config.txt
 
 ~~~diff
-@@ -46,4 +46,4 @@
+@@ -46,4 +46,6 @@
  otg_mode=1
 
  [all]
 -
 +dtoverlay=disable-bt
++dtparam=pwr_led_trigger=mmc0,pwr_led_activelow=on
++dtparam=act_led_trigger=rfkill0
 ~~~
 
 ### Allow cgroup V2 CPU & Memory control
