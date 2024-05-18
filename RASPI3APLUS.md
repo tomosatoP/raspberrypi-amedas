@@ -44,7 +44,7 @@ https://www.raspberrypi.com/documentation/computers/configuration.html
 ### raspi-config
 ~~~sh
 sudo apt update
-sudu apt full-upgrade -y
+sudo apt full-upgrade -y
 sudo apt autoremove -y
 
 sudo raspi-config nonint do_boot_behaviour B2
