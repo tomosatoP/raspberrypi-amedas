@@ -33,7 +33,7 @@ docker compose run --entrypoint "poetry install --no-root --only main" amedas
 
 ~~~sh
 cd raspberrypi-amedas
-docker compose up -d
+docker compose up -d --remove-orphans
 ~~~
 
 ## Check
